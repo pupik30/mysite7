@@ -27,29 +27,56 @@
     </form>
 
     <?php
+
+    class Trapezoid {
+        private $x;
+        private $y;
+        private $z;
+
+        public function __construct($x, $y, $z) {
+            $this->x = $x;
+            $this->y = $y;
+            $this->z = $z;
+        }
+
+        public function calculateArea() {
+            // Площадь трапеции
+            return (max($this->x, $this->y) + $this->z);
+        }
+
+        public function getX() {
+            return $this->x;
+        }
+
+        public function getY() {
+            return $this->y;
+        }
+
+        public function getZ() {
+            return $this->z;
+        }
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Получаем данные из формы
         $x = $_POST['x'];
         $y = $_POST['y'];
         $z = $_POST['z'];
-    }
-    function calculateTrapezoidArea($x,$y, $z) {
-        // площадь трапеции
-        $S = max($x,$y) + $z;
-        return $S;
 
-    }
+        // Создаем объект класса Trapezoid
+        $trapezoid = new Trapezoid($x, $y, $z);
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $area = calculateTrapezoidArea($x, $y, $z);
-    }
+        // Вычисляем площадь
+        $area = $trapezoid->calculateArea();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo "<br>x = " . $x;
-        echo "<br>y = " . $y;
-        echo "<br>z = " . $z;
+        // Выводим результаты
+        echo "<br>x = " . $trapezoid->getX();
+        echo "<br>y = " . $trapezoid->getY();
+        echo "<br>z = " . $trapezoid->getZ();
+        echo "<br><br>Сумма Z и большего из X/Y: <span style='color: #a1284e;'>$area</span>";
     }
-    echo "<br><br>Сумма Z и большего из X/Y: <span style='color: #a1284e;'>$area</span>";
     ?>
+
 </div>
 
 <br>

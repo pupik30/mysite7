@@ -24,27 +24,65 @@ $array = [];
 
    for ($i = 0; $i < $n; $i++) {
        for ($j = 0; $j < $m; $j++) {
-           $array[$i][$j] = rand(0, 10) / 1; // рандом цыфры от 1 до 100
+           $array[$i][$j] = rand(0, 10); // рандом цыфры от 1 до 100
        }
    }
 
-echo "Исходный массив:\n";
+echo "Исходный массив:<br>";
+foreach ($array as $row) {
+   echo implode(", ", $row) . "<br>";
+}
 
-   print_r($array);
-function sort_by_last_column(&$arr) {
-    usort($arr, function($a, $b) {
-        $last_column_a = end($a);
 
-        $last_column_b = end($b);
-        return $last_column_b = $last_column_a;
-        });
+
+
+
+function sortLastColumn(&$arr) {
+    if (empty($arr)) return;
+
+    $lastColIndex = count($arr[0]) - 1;
+
+    // Извлекаем последний столбец
+    $lastColumn = [];
+    foreach ($arr as $i => $row) {
+        $lastColumn[$i] = $row[$lastColIndex];
     }
+
+    // Сортируем с сохранением ключей
+    asort($lastColumn);
+
+    // Перестраиваем матрицу в соответствии с отсортированным порядком
+    $sortedMatrix = [];
+    foreach ($lastColumn as $index => $value) {
+        $sortedMatrix[] = $arr[$index];
+    }
+
+    $arr = $sortedMatrix;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    // Сортируем массив
-   sort_by_last_column($array);
+   sortLastColumn($array);
 
    // Вывод отсортированного массива
-   echo "<br><br>Отсортированный массив:\n";
-   print_r($array);
+   echo "<br><br>Отсортированный массив:<br>";
+   foreach ($array as $row) {
+       echo implode(", ", $row) . "<br>";
+   }
 
 
    ?>
