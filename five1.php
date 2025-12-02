@@ -20,28 +20,40 @@
 
         <br>
         <input type="submit" value="Куб большего из чисел">
-
     </form>
 
     <?php
+    class CubeCalculator {
+        private $x;
+        private $y;
+
+        public function __construct($x, $y) {
+            $this->x = $x;
+            $this->y = $y;
+        }
+
+        public function calculateCubeOfMax() {
+            return pow(max($this->x, $this->y), 3);
+        }
+
+        public function getX() {
+            return $this->x;
+        }
+
+        public function getY() {
+            return $this->y;
+        }
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $x = $_POST['x'];
         $y = $_POST['y'];
-    }
-    function calculateTrapezoidArea($x,$y) {
-        // площадь трапеции
-        $S = max(pow($x,3),pow($y,3));
-        return $S;
 
-    }
+        $calculator = new CubeCalculator($x, $y);
+        $area = $calculator->calculateCubeOfMax();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $area = calculateTrapezoidArea($x, $y);
-    }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo "<br>x = " . $x;
-        echo "<br>y = " . $y;
+        echo "<br>x = " . $calculator->getX();
+        echo "<br>y = " . $calculator->getY();
         echo "<br><br>Куб большего из чисел " . $area;
     }
     ?>
@@ -52,9 +64,7 @@
 <a href="five1.php">| five1.php | </a><br>
 <a href="five2.php">| five2.php | </a><br>
 <a href="five3.php">| five3.php | </a><br>
-<a href="five4.php">| five4.php | </a><br>
+
 <a href="five5.php">| five5.php | </a><br>
 </body>
 </html>
-
-

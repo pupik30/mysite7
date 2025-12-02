@@ -12,42 +12,80 @@
 <h1>Задача №1</h1>
 <h3>Лаба 2, на 5</h3>
 <form action="onemass.php" method="post">
-   <?php
+    <?php
 
-   // можно раздокументить для красоты, но потери функционала
-//   header("Content-Type: application; charset=UTF-8");
+    // можно раздокументить для красоты, но потери функционала
+    //   header("Content-Type: application; charset=UTF-8");
 
 
-   $n = 4; // количество строк
-   $m = 4; // количество столбцов
-$array = [];
+    $n = 4; // количество строк
+    $m = 4; // количество столбцов
+    $array = [];
 
-   for ($i = 0; $i < $n; $i++) {
-       for ($j = 0; $j < $m; $j++) {
-           $array[$i][$j] = rand(0, 10) / 1; // рандом цыфры от 1 до 100
-       }
-   }
-
-echo "Исходный массив:\n";
-
-   print_r($array);
-function sort_by_last_column(&$arr) {
-    usort($arr, function($a, $b) {
-        $last_column_a = end($a);
-
-        $last_column_b = end($b);
-        return $last_column_b = $last_column_a;
-        });
+    for ($i = 0; $i < $n; $i++) {
+        for ($j = 0; $j < $m; $j++) {
+            $array[$i][$j] = rand(0, 10); // рандом цыфры от 1 до 100
+        }
     }
-   // Сортируем массив
-   sort_by_last_column($array);
 
-   // Вывод отсортированного массива
-   echo "<br><br>Отсортированный массив:\n";
-   print_r($array);
+    echo "Исходный массив:<br>";
+    foreach ($array as $row) {
+        echo implode(", ", $row) . "<br>";
+    }
 
 
-   ?>
+
+
+
+    function sortLastColumn(&$arr) {
+        if (empty($arr)) return;
+
+        $lastColIndex = count($arr[0]) - 1;
+
+        // Извлекаем последний столбец
+        $lastColumn = [];
+        foreach ($arr as $i => $row) {
+            $lastColumn[$i] = $row[$lastColIndex];
+        }
+
+        // Сортируем с сохранением ключей
+        asort($lastColumn);
+
+        // Перестраиваем матрицу в соответствии с отсортированным порядком
+        $sortedMatrix = [];
+        foreach ($lastColumn as $index => $value) {
+            $sortedMatrix[] = $arr[$index];
+        }
+
+        $arr = $sortedMatrix;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Сортируем массив
+    sortLastColumn($array);
+
+    // Вывод отсортированного массива
+    echo "<br><br>Отсортированный массив:<br>";
+    foreach ($array as $row) {
+        echo implode(", ", $row) . "<br>";
+    }
+
+
+    ?>
     <br><br><br>
     <a href="first.php">< Назад |</a>
     <a href="index.php">| Домой |</a>

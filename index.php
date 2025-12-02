@@ -18,7 +18,7 @@
 <a href="five1.php">Лабораторная работа №5.1</a>
 <a href="five2.php"> №5.2</a>
 <a href="five3.php"> №5.3</a>
-<a href="five4.php"> №5.4</a>
+
 <a href="five5.php">№5.5</a><br>
 <a href="six6.php" >Лабораторная работа №6</a><br>
 <a href="seven7.php" >Лабораторная работа №7</a><br>
